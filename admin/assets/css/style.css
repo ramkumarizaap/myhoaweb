@@ -1,0 +1,79 @@
+.form-input
+{
+	background:#ddd;
+	margin-bottom:30px;
+	padding:20px;
+}
+.form-input ul,.saved-form ul
+{
+	list-style: none;
+	padding: 0;
+}
+.form-input li
+{
+	display: inline-block;
+	width: 14%;
+	padding: 10px;
+	color: #000;
+	cursor: pointer;
+}
+.form-input li span
+{
+	float: right;
+	display: none;
+}
+.form-input li:hover span
+{
+	display: inline-block;
+}
+.form-input li:hover
+{
+	background: #ccc;
+}
+.saved-form
+{
+	min-height: 40px;
+	background: #ccc;
+	display: table;
+	padding-bottom: 20px;
+	margin-bottom: 40px;
+}
+.saved-form ul li
+{
+	padding-top: 10px;
+	border: 1px dashed black;
+	display: table;
+	margin-top: 20px;
+	width: 100%;
+	cursor: move;
+	color: #000;
+	padding-bottom: 10px;
+}
+.saved-form ul li .ed_options 
+{
+	display: table;
+	width: 100%;
+	text-align: right;
+	float: right;
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-bottom: 10px;
+}
+.saved-form ul li .ed_options a
+{
+	color: red;
+}
+.list-entry
+{
+	list-style:lower-norwegian;
+	padding: 0;
+}
+.list-entry li
+{
+	border-bottom: 2px dashed black;
+	padding-bottom: 10px;
+}
+.list-entry li:last-child
+{
+	border: none;
+}
