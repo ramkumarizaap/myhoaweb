@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Sep 02, 2016 at 03:15 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.5.35
+-- Host: 127.0.0.1
+-- Generation Time: Aug 07, 2017 at 08:34 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -269,8 +269,8 @@ CREATE TABLE `hoa_form_data` (
 --
 
 INSERT INTO `hoa_form_data` (`id`, `form_id`, `data`, `created_date`) VALUES
-(1, 1, '{"Title":"Personal Info","Firstname":"Ramkumar","Lastname":"S","Email-ID":"ramkumar.izaap@gmail.com","Age":"25","PayTo":"To Camp Registration","Amount":"$5.00","TransID":"","Status":"Pending"}', '2016-08-26 13:18:40'),
-(2, 2, '{"Gender":"Male","PayTo":"To Camp Registration","Amount":"$5.00","TransID":"","Status":"Pending"}', '2016-08-31 15:01:11');
+(1, 1, '{\"Title\":\"Personal Info\",\"Firstname\":\"Ramkumar\",\"Lastname\":\"S\",\"Email-ID\":\"ramkumar.izaap@gmail.com\",\"Age\":\"25\",\"PayTo\":\"To Camp Registration\",\"Amount\":\"$5.00\",\"TransID\":\"\",\"Status\":\"Pending\"}', '2016-08-26 13:18:40'),
+(2, 2, '{\"Gender\":\"Male\",\"PayTo\":\"To Camp Registration\",\"Amount\":\"$5.00\",\"TransID\":\"\",\"Status\":\"Pending\"}', '2016-08-31 15:01:11');
 
 -- --------------------------------------------------------
 
@@ -290,15 +290,15 @@ CREATE TABLE `hoa_form_fields` (
 --
 
 INSERT INTO `hoa_form_fields` (`id`, `form_id`, `field`, `sort`) VALUES
-(6, 1, '{"form_id":"1","label":"Test Form","type":"title-field","options":",,","required":"off"}', 0),
-(18, 1, '{"form_id":"1","label":"Personal Info","type":"personal-field","options":",,","required":"on"}', 1),
-(19, 1, '{"form_id":"1","label":"Save Form","type":"submit-field","options":",,","required":"off"}', 3),
-(21, 1, '{"form_id":"1","label":"To Camp Registration","type":"payment-field","options":",,","amount":"5.00","required":"off"}', 1),
-(22, 2, '{"form_id":"2","label":"Gender","type":"select-field","options":"Male,Female,","amount":"5.00","required":"on"}', 0),
-(23, 2, '{"form_id":"2","label":"Test","type":"radio-field","options":"1,2,4","amount":"5.00","required":"on"}', 2),
-(24, 2, '{"form_id":"2","label":"Teste 1","type":"check-field","options":"1,3,4,5","amount":"5.00","required":"on"}', 1),
-(25, 2, '{"form_id":"2","label":"To Camp Registration","type":"payment-field","options":",,","amount":"5.00","required":"on"}', 3),
-(26, 2, '{"form_id":"2","label":"Save","type":"submit-field","options":",,","amount":"5.00","required":"off"}', 4);
+(6, 1, '{\"form_id\":\"1\",\"label\":\"Test Form\",\"type\":\"title-field\",\"options\":\",,\",\"required\":\"off\"}', 0),
+(18, 1, '{\"form_id\":\"1\",\"label\":\"Personal Info\",\"type\":\"personal-field\",\"options\":\",,\",\"required\":\"on\"}', 1),
+(19, 1, '{\"form_id\":\"1\",\"label\":\"Save Form\",\"type\":\"submit-field\",\"options\":\",,\",\"required\":\"off\"}', 3),
+(21, 1, '{\"form_id\":\"1\",\"label\":\"To Camp Registration\",\"type\":\"payment-field\",\"options\":\",,\",\"amount\":\"5.00\",\"required\":\"off\"}', 1),
+(22, 2, '{\"form_id\":\"2\",\"label\":\"Gender\",\"type\":\"select-field\",\"options\":\"Male,Female,\",\"amount\":\"5.00\",\"required\":\"on\"}', 0),
+(23, 2, '{\"form_id\":\"2\",\"label\":\"Test\",\"type\":\"radio-field\",\"options\":\"1,2,4\",\"amount\":\"5.00\",\"required\":\"on\"}', 2),
+(24, 2, '{\"form_id\":\"2\",\"label\":\"Teste 1\",\"type\":\"check-field\",\"options\":\"1,3,4,5\",\"amount\":\"5.00\",\"required\":\"on\"}', 1),
+(25, 2, '{\"form_id\":\"2\",\"label\":\"To Camp Registration\",\"type\":\"payment-field\",\"options\":\",,\",\"amount\":\"5.00\",\"required\":\"on\"}', 3),
+(26, 2, '{\"form_id\":\"2\",\"label\":\"Save\",\"type\":\"submit-field\",\"options\":\",,\",\"amount\":\"5.00\",\"required\":\"off\"}', 4);
 
 -- --------------------------------------------------------
 
@@ -405,6 +405,35 @@ INSERT INTO `hoa_resource_document` (`id`, `title`, `document`, `description`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `hoa_stream_comments`
+--
+
+CREATE TABLE `hoa_stream_comments` (
+  `id` int(11) NOT NULL,
+  `stream_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `comments` int(11) NOT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_updated` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hoa_stream_likes`
+--
+
+CREATE TABLE `hoa_stream_likes` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `stream_id` int(11) NOT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `hoa_users`
 --
 
@@ -423,6 +452,7 @@ CREATE TABLE `hoa_users` (
   `mobile` varchar(255) NOT NULL,
   `about_me` text NOT NULL,
   `usertype` int(11) NOT NULL,
+  `community_id` int(11) NOT NULL,
   `published` int(11) NOT NULL DEFAULT '1',
   `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_updated` datetime NOT NULL
@@ -432,12 +462,12 @@ CREATE TABLE `hoa_users` (
 -- Dumping data for table `hoa_users`
 --
 
-INSERT INTO `hoa_users` (`id`, `firstname`, `lastname`, `username`, `email`, `password`, `code`, `photo`, `video`, `address`, `phone`, `mobile`, `about_me`, `usertype`, `published`, `created_date`, `last_updated`) VALUES
-(1, 'Ramkumar', 'Srinivasan', 'ramkumar', 'ramkumar.izaap@gmail.com', '123456', 1, 'assets/images/profile/user.png', '', 'Chennai', '1234567890', '1234567890', 'Good Boy										', 1, 1, '2016-08-08 13:34:50', '0000-00-00 00:00:00'),
-(2, 'Ramkumars', 'Srinivasans', 'ramkumars', 'ramkumar.izaap@gmail.coms', '1234567', 1, 'assets/images/profile/user.png', '', 'Chennais', '1234567890', '1234567890', 'Good Boy										', 1, 1, '2016-08-08 13:34:50', '0000-00-00 00:00:00'),
-(3, 'admin', 'Trator', 'admin', 'admin@admin.com', '123456', 1, 'assets/images/profile/pics/user.png', 'assets/images/profile/videos/VID-20151130-WA0001.mp4', 'Chennai', '1235467890', '', 'Good Boy', 2, 1, '2016-08-29 16:51:43', '0000-00-00 00:00:00'),
-(4, 'Admin', 'Admin', 'admin', 'admin@admin.com', 'admin', 0, '', '', '', '', '', '', 1, 1, '2016-09-01 16:36:22', '0000-00-00 00:00:00'),
-(5, 'Test', 'Test', 'test', 'test@gmail.com', '123456', 1, '', '', 'Chennai', '1234567890', '1234567890', 'Good Human Sense', 1, 1, '2016-09-02 17:49:25', '0000-00-00 00:00:00');
+INSERT INTO `hoa_users` (`id`, `firstname`, `lastname`, `username`, `email`, `password`, `code`, `photo`, `video`, `address`, `phone`, `mobile`, `about_me`, `usertype`, `community_id`, `published`, `created_date`, `last_updated`) VALUES
+(1, 'Ramkumar', 'Srinivasan', 'ramkumar', 'ramkumar.izaap@gmail.com', '123456', 1, 'assets/images/profile/user.png', '', 'Chennai', '1234567890', '1234567890', 'Good Boy										', 5, 0, 1, '2016-08-08 13:34:50', '0000-00-00 00:00:00'),
+(2, 'Ramkumars', 'Srinivasans', 'ramkumars', 'ramkumar.izaap@gmail.coms', '1234567', 1, 'assets/images/profile/user.png', '', 'Chennais', '1234567890', '1234567890', 'Good Boy										', 1, 0, 1, '2016-08-08 13:34:50', '0000-00-00 00:00:00'),
+(3, 'admin', 'Trator', 'admin', 'admin@admin.com', '123456', 1, 'assets/images/profile/pics/user.png', 'assets/images/profile/videos/VID-20151130-WA0001.mp4', 'Chennai', '1235467890', '', 'Good Boy', 2, 0, 1, '2016-08-29 16:51:43', '0000-00-00 00:00:00'),
+(4, 'Admin', 'Admin', 'admin', 'admin@admin.com', 'admin', 0, '', '', '', '', '', '', 1, 0, 1, '2016-09-01 16:36:22', '0000-00-00 00:00:00'),
+(5, 'Test', 'Test', 'test', 'test@gmail.com', '123456', 1, '', '', 'Chennai', '1234567890', '1234567890', 'Good Human Sense', 1, 0, 1, '2016-09-02 17:49:25', '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -534,6 +564,18 @@ ALTER TABLE `hoa_resource_document`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `hoa_stream_comments`
+--
+ALTER TABLE `hoa_stream_comments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hoa_stream_likes`
+--
+ALTER TABLE `hoa_stream_likes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `hoa_users`
 --
 ALTER TABLE `hoa_users`
@@ -619,10 +661,20 @@ ALTER TABLE `hoa_resource_category`
 ALTER TABLE `hoa_resource_document`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT for table `hoa_stream_comments`
+--
+ALTER TABLE `hoa_stream_comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `hoa_stream_likes`
+--
+ALTER TABLE `hoa_stream_likes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `hoa_users`
 --
 ALTER TABLE `hoa_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
